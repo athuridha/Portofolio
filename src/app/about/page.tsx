@@ -33,7 +33,7 @@ export default function AboutPage() {
             <div className="lg:w-1/2">
               <div className="flex items-center gap-6 mb-6">
                 <Image
-                  src="/placeholder.svg?height=150&width=150"
+                  src="/images/amar.png?height=150&width=150"
                   alt="Your Name"
                   width={150}
                   height={150}

@@ -217,18 +217,6 @@ export default function Home() {
         className="relative h-screen flex items-center justify-center overflow-hidden"
         style={{ opacity }}
       >
-        <motion.div
-          className="absolute inset-0 z-0"
-          style={{ y }}
-        >
-          <Image
-            src="/placeholder.svg?height=1080&width=1920"
-            alt="Background"
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-        </motion.div>
         <div className="relative z-10 text-center text-white">
           <motion.h1
             className="text-4xl sm:text-6xl font-bold mb-4"
@@ -276,7 +264,7 @@ export default function Home() {
               <div className="lg:w-1/2">
                 <div className="flex items-center gap-6 mb-6">
                   <Image
-                    src="/placeholder.svg?height=150&width=150"
+                    src="/images/amar.png"
                     alt="Amar"
                     width={150}
                     height={150}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
-import { Download, Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
+import { Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from 'next/link'
@@ -113,7 +113,9 @@ export default function Home() {
                     />
                   ))}
                   <Button className="mt-4 w-full bg-white text-black hover:bg-gray-200">
-                    <Download className="mr-2 h-4 w-4" /> Download CV
+                      <Link href="/Amara Thuridha-resume.pdf" download> {/* Menambahkan atribut download */}
+                        Download CV
+                      </Link>
                   </Button>
                 </motion.nav>
               </motion.div>
@@ -188,7 +190,7 @@ export default function Home() {
 
   const HeroSection = () => {
     const { scrollYProgress } = useScroll()
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+    //const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
     return (
@@ -384,8 +386,10 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
-                    <Button className="bg-black text-white hover:bg-gray-800">
-                      <Download className="mr-2 h-4 w-4" /> Download CV
+                    <Button className="bg-black text-white hover:bg-gray-800" asChild>
+                      <Link href="/Amara Thuridha-resume.pdf" download> {/* Menambahkan atribut download */}
+                        Download CV
+                      </Link>
                     </Button>
                   </motion.div>
                 </div>

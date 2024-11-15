@@ -56,7 +56,7 @@ export const aboutData = {
       location: "Jakarta, Indonesia",
       period: "Sep 2023 - Nov 2023",
       responsibilities: [
-        "BEM Untar is a student organization at the central or university level established on November 6, 1999. BEM UNTAR has the obligation to carry out the EXECUTIVE function at the central level with the ministries within it, which aims to serve and bridge students with the university and related agencies carried out in the annual work program."
+        
       ]
     }
   ],

@@ -251,7 +251,7 @@ export default function Home() {
                       alt={aboutData.name}
                       width={800}
                       height={1200}
-                      className="object-cover w-full h-full rounded-full lg:rounded-none"
+                      className="object-cover w-full h-full lg:rounded-none"
                     />
                   </div>
                   <div>
@@ -367,16 +367,22 @@ export default function Home() {
               <div className="bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-2xl sm:text-3xl font-semibold mb-4 text-black">Get in Touch</h2>
                 <div className="flex flex-col items-center">
-                  <div className="flex space-x-4 mb-6">
-                    {[Mail, Github, Linkedin].map((Icon, index) => (
+                <div className="flex space-x-4 mb-6">
+                    {[
+                      { Icon: Mail, link: "mailto:amarathuridhaa@gmail.com" }, // Tautan email
+                      { Icon: Github, link: "https://github.com/athuridha" }, // Tautan GitHub
+                      { Icon: Linkedin, link: "https://www.linkedin.com/in/amara-thuridha-3baa3122b" } // Tautan LinkedIn
+                    ].map(({ Icon, link }, index) => (
                       <motion.div
                         key={index}
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                       >
-                        <Button variant="outline" size="icon" className="text-black border-black hover:bg-gray-100">
-                          <Icon className="h-6 w-6" />
+                        <Button variant="outline" size="icon" className="text-black border-black hover:bg-gray-100" asChild>
+                          <Link href={link} target="_blank" rel="noopener noreferrer"> {/* Menambahkan tautan */}
+                            <Icon className="h-6 w-6" />
+                          </Link>
                         </Button>
                       </motion.div>
                     ))}

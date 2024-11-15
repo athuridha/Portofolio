@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { aboutData } from '@/app/data/aboutData'
+import { Phone, Mail, Linkedin, Github } from 'lucide-react'
 
 export default function AboutPage() {
   return (
@@ -44,11 +45,26 @@ export default function AboutPage() {
               <div className="mt-6">
                 <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
                 <ul className="space-y-2">
-                  <li>Phone: {aboutData.contact.phone}</li>
-                  <li>Email: {aboutData.contact.email}</li>
-                  <li>LinkedIn: <a href={`https://${aboutData.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.linkedin}</a></li>
-                  <li>GitHub: <a href={aboutData.contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.github}</a></li>
-                  <li>Location: {aboutData.contact.location}</li>
+                  <li className="flex items-center">
+                    <Phone className="mr-2" />
+                    {aboutData.contact.phone}
+                  </li>
+                  <li className="flex items-center">
+                    <Mail className="mr-2" />
+                    {aboutData.contact.email}
+                  </li>
+                  <li className="flex items-center">
+                    <Linkedin className="mr-2" />
+                    <a href={`https://${aboutData.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.linkedin}</a>
+                  </li>
+                  <li className="flex items-center">
+                    <Github className="mr-2" />
+                    <a href={aboutData.contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.github}</a>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2">📍</span>
+                    {aboutData.contact.location}
+                  </li>
                 </ul>
               </div>
             </div>

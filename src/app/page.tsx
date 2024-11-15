@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
-import { Download, Mail, Github, Linkedin, Code, Camera, Film, PenTool, Terminal, Menu, User, Briefcase, GraduationCap, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
+import { Download, Mail, Github, Linkedin, Code, Camera, Film, PenTool, Terminal, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from 'next/link'
@@ -144,7 +144,7 @@ export default function Home() {
     )
   }
 
-  const NavItem = ({ id, title, Icon, setActiveSection }) => (
+  const NavItem = ({ id, title, Icon, setActiveSection }: { id: string; title: string; Icon: React.ElementType; setActiveSection: (section: string) => void }) => (
     <div className="relative group">
       <a
         href={`#${id}`}
@@ -177,7 +177,7 @@ export default function Home() {
     </div>
   )
 
-  const NavItemMobile = ({ id, title, Icon, setActiveSection, onClick }) => (
+  const NavItemMobile = ({ id, title, Icon, setActiveSection, onClick }: { id: string; title: string; Icon: React.ElementType; setActiveSection: (section: string) => void; onClick?: () => void }) => (
     <a
       href={`#${id}`}
       className={cn(
@@ -236,7 +236,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Your Name
+            Amara Thuridha
           </motion.h1>
           <motion.p
             className="text-xl sm:text-2xl mb-8"
@@ -251,9 +251,6 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Button asChild className="bg-white text-black hover:bg-gray-200">
-              <Link href="/about">Learn More</Link>
-            </Button>
           </motion.div>
         </div>
         <motion.div
@@ -280,14 +277,14 @@ export default function Home() {
                 <div className="flex items-center gap-6 mb-6">
                   <Image
                     src="/placeholder.svg?height=150&width=150"
-                    alt="Your Name"
+                    alt="Amar"
                     width={150}
                     height={150}
                     className="rounded-full"
                   />
                   <div>
                     <p className="text-base mb-4">
-                      Here's where you can write a brief introduction about yourself, your passion for web development and design, and what drives you in your career.
+                      Here&apos;s where you can write a brief introduction about yourself, your passion for web development and design, and what drives you in your career.
                     </p>
                     <Button asChild className="mt-4">
                       <Link href="/about">Read More About Me</Link>

@@ -41,7 +41,7 @@ export default function AboutPage() {
                 />
                 <div>
                   <p className="text-base mb-4">
-                    Here's where you can write a more detailed introduction about yourself, your journey in web development and design, and what motivates you in your career. You can expand on your experiences, achievements, and future goals.
+                    Here&apos;s where you can write a more detailed introduction about yourself, your journey in web development and design, and what motivates you in your career. You can expand on your experiences, achievements, and future goals.
                   </p>
                 </div>
               </div>

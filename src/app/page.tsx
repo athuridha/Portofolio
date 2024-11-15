@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
-import { Download, Mail, Github, Linkedin, Code, Camera, Film, PenTool, Terminal, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
+import { Download, Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from 'next/link'
 import Image from 'next/image'
+import { projects } from '@/app/data/projectsData'
+import { aboutData } from '@/app/data/aboutData'
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
@@ -36,20 +38,6 @@ export default function Home() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const skills = [
-    { name: 'Adobe Photoshop', level: 90, icon: <PenTool className="h-6 w-6" /> },
-    { name: 'Adobe After Effects', level: 85, icon: <Film className="h-6 w-6" /> },
-    { name: 'Adobe Premiere Pro', level: 80, icon: <Camera className="h-6 w-6" /> },
-    { name: 'Python', level: 75, icon: <Terminal className="h-6 w-6" /> },
-    { name: 'Front-End Development', level: 85, icon: <Code className="h-6 w-6" /> },
-  ]
-
-  const projects = [
-    { name: 'Project 1', description: 'A brief description of Project 1', image: '/placeholder.svg?height=200&width=300' },
-    { name: 'Project 2', description: 'A brief description of Project 2', image: '/placeholder.svg?height=200&width=300' },
-    { name: 'Project 3', description: 'A brief description of Project 3', image: '/placeholder.svg?height=200&width=300' },
-  ]
 
   const sections = [
     { id: "hero", title: "About & Skills", icon: User },
@@ -114,14 +102,6 @@ export default function Home() {
                   exit={{ y: 20, opacity: 0 }}
                   transition={{ duration: 0.2, delay: 0.1 }}
                 >
-                  {/* <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-4 right-4 text-white"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <X className="h-6 w-6" />
-                  </Button> */}
                   {sections.map(({ id, title, icon: Icon }) => (
                     <NavItemMobile
                       key={id}
@@ -224,7 +204,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            Amara Thuridha
+            {aboutData.name}
           </motion.h1>
           <motion.p
             className="text-xl sm:text-2xl mb-8"
@@ -232,7 +212,7 @@ export default function Home() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Web Developer & Designer
+            {aboutData.role}
           </motion.p>
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -262,17 +242,21 @@ export default function Home() {
             </div>
             <div className="flex flex-col lg:flex-row gap-8 text-black">
               <div className="lg:w-1/2">
-                <div className="flex items-center gap-6 mb-6">
-                  <Image
-                    src="/images/amar.png"
-                    alt="Amar"
-                    width={150}
-                    height={150}
-                    className="rounded-full"
-                  />
+                <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
+                  <div className="overflow-hidden mb-4 sm:mb-0">
+                    <Image
+                      src={aboutData.image}
+                      alt={aboutData.name}
+                      width={800}
+                      height={1200}
+                      className="object-cover w-full h-full rounded-full lg:rounded-none"
+                    />
+                  </div>
                   <div>
+                    <h3 className="text-xl font-semibold mb-2">{aboutData.name}</h3>
+                    <p className="text-lg mb-2">{aboutData.role}</p>
                     <p className="text-base mb-4">
-                      Here&apos;s where you can write a brief introduction about yourself, your passion for web development and design, and what drives you in your career.
+                      {aboutData.description}
                     </p>
                     <Button asChild className="mt-4">
                       <Link href="/about">Read More About Me</Link>
@@ -283,7 +267,7 @@ export default function Home() {
               <div className="lg:w-1/2">
                 <h3 className="text-xl font-semibold mb-4">My Skills</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {skills.map((skill, index) => (
+                  {aboutData.skills.map((skill, index) => (
                     <motion.div
                       key={skill.name}
                       className="bg-gray-100 p-4 rounded-lg"
@@ -292,7 +276,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
                       <div className="flex items-center mb-2">
-                        {skill.icon}
+                        <skill.icon className="h-6 w-6" />
                         <h4 className="text-base font-semibold ml-2">{skill.name}</h4>
                       </div>
                       <motion.div 
@@ -319,6 +303,46 @@ export default function Home() {
     )
   }
 
+  const ProjectsSection = () => {
+    return (
+      <section id="projects" className="mb-12">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-black">Projects</h2>
+            <Button asChild variant="outline" className="text-black border-black hover:bg-gray-100">
+              <Link href="/projects">
+                <ChevronRight className="mr-2 h-4 w-4" />
+                View All Projects
+              </Link>
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
+            {projects.slice(0, 3).map((project, index) => (
+              <motion.div
+                key={project.name}
+                className="bg-gray-100 p-4 rounded-lg flex flex-col text-black"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  width={300}
+                  height={200}
+                  className="rounded-lg mb-4 w-full object-cover"
+                />
+                <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
+                <p className="text-sm mb-4 flex-grow">{project.description}</p>
+                <Button variant="outline" className="self-start text-black border-black hover:bg-gray-200">View Project</Button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -335,42 +359,7 @@ export default function Home() {
           <HeroSection />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <AboutSection />
-
-            <section id="projects" className="mb-12">
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl sm:text-3xl font-semibold text-black">Projects</h2>
-                  <Button asChild variant="outline" className="text-black border-black hover:bg-gray-100">
-                    <Link href="/projects">
-                      <ChevronRight className="mr-2 h-4 w-4" />
-                      View All Projects
-                    </Link>
-                  </Button>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
-                  {projects.slice(0, 3).map((project, index) => (
-                    <motion.div
-                      key={project.name}
-                      className="bg-gray-100 p-4 rounded-lg flex flex-col text-black"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <Image
-                        src={project.image}
-                        alt={project.name}
-                        width={300}
-                        height={200}
-                        className="rounded-lg mb-4 w-full object-cover"
-                      />
-                      <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
-                      <p className="text-sm mb-4 flex-grow">{project.description}</p>
-                      <Button variant="outline" className="self-start text-black border-black hover:bg-gray-200">View Project</Button>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
+            <ProjectsSection />
 
             <section id="contact" className="mb-12">
               <div className="bg-white rounded-lg shadow-lg p-6">

@@ -3,16 +3,8 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { PenTool, Film, Camera, Terminal, Code } from 'lucide-react'
 import Link from 'next/link'
-
-const skills = [
-  { name: 'Adobe Photoshop', level: 90, icon: <PenTool className="h-6 w-6" /> },
-  { name: 'Adobe After Effects', level: 85, icon: <Film className="h-6 w-6" /> },
-  { name: 'Adobe Premiere Pro', level: 80, icon: <Camera className="h-6 w-6" /> },
-  { name: 'Python', level: 75, icon: <Terminal className="h-6 w-6" /> },
-  { name: 'Front-End Development', level: 85, icon: <Code className="h-6 w-6" /> },
-]
+import { aboutData } from '@/app/data/aboutData'
 
 export default function AboutPage() {
   return (
@@ -31,25 +23,39 @@ export default function AboutPage() {
           <h2 className="text-3xl font-semibold mb-6">About Me</h2>
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="lg:w-1/2">
-              <div className="flex items-center gap-6 mb-6">
-                <Image
-                  src="/images/amar.png?height=150&width=150"
-                  alt="Your Name"
-                  width={150}
-                  height={150}
-                  className="rounded-full"
-                />
+              <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
+                <div className="overflow-hidden mb-4 sm:mb-0">
+                  <Image
+                    src={aboutData.image}
+                    alt={aboutData.name}
+                    width={800}
+                    height={1200}
+                    className="object-cover w-full h-full rounded-full lg:rounded-none"
+                  />
+                </div>
                 <div>
+                  <h3 className="text-xl font-semibold mb-2">{aboutData.name}</h3>
+                  <p className="text-lg mb-2">{aboutData.role}</p>
                   <p className="text-base mb-4">
-                    Here&apos;s where you can write a more detailed introduction about yourself, your journey in web development and design, and what motivates you in your career. You can expand on your experiences, achievements, and future goals.
+                    {aboutData.description}
                   </p>
                 </div>
+              </div>
+              <div className="mt-6">
+                <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
+                <ul className="space-y-2">
+                  <li>Phone: {aboutData.contact.phone}</li>
+                  <li>Email: {aboutData.contact.email}</li>
+                  <li>LinkedIn: <a href={`https://${aboutData.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.linkedin}</a></li>
+                  <li>GitHub: <a href={aboutData.contact.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.github}</a></li>
+                  <li>Location: {aboutData.contact.location}</li>
+                </ul>
               </div>
             </div>
             <div className="lg:w-1/2">
               <h3 className="text-xl font-semibold mb-4">My Skills</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {skills.map((skill, index) => (
+                {aboutData.skills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
                     className="bg-gray-100 p-4 rounded-lg"
@@ -58,7 +64,7 @@ export default function AboutPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <div className="flex items-center mb-2">
-                      {skill.icon}
+                      <skill.icon className="h-6 w-6" />
                       <h4 className="text-base font-semibold ml-2">{skill.name}</h4>
                     </div>
                     <motion.div 
@@ -87,12 +93,46 @@ export default function AboutPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h2 className="text-3xl font-semibold mb-6">Education</h2>
-          <div className="bg-gray-100 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-2">Your University</h3>
-            <p className="text-base mb-2">Degree in Computer Science</p>
-            <p>Graduation Year: 20XX</p>
-            <p className="mt-4">You can add more details about your educational background, relevant coursework, academic achievements, or any significant projects you worked on during your studies.</p>
-          </div>
+          {aboutData.education.map((edu, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-100 p-4 rounded-lg mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <h4 className="text-lg font-semibold">{edu.institution}</h4>
+              <p>{edu.degree}</p>
+              <p className="text-sm text-gray-600">{edu.period}</p>
+              <p className="mt-2">{edu.details}</p>
+            </motion.div>
+          ))}
+        </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <h2 className="text-3xl font-semibold mb-6 mt-12">Work Experience</h2>
+          {aboutData.workExperience.map((exp, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-100 p-6 rounded-lg mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <h3 className="text-xl font-semibold mb-2">{exp.position}</h3>
+              <p className="text-lg mb-2">{exp.company} - {exp.location}</p>
+              <p className="text-sm text-gray-600 mb-4">{exp.period}</p>
+              <ul className="list-disc pl-5 space-y-2">
+                {exp.responsibilities.map((resp, respIndex) => (
+                  <li key={respIndex}>{resp}</li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </motion.section>
       </main>
     </div>

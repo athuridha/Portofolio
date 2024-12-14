@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
-import { Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown } from 'lucide-react'
+import { Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown, ExternalLink } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from 'next/link'
@@ -336,7 +336,20 @@ export default function Home() {
                 />
                 <h3 className="text-lg font-semibold mb-2">{project.name}</h3>
                 <p className="text-sm mb-4 flex-grow">{project.description}</p>
-                <Button variant="outline" className="self-start text-black border-black hover:bg-gray-200">View Project</Button>
+                <div className="flex gap-4">
+                  <Button asChild variant="outline" className="flex items-center gap-2">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-4 h-4" />
+                      GitHub
+                    </a>
+                  </Button>
+                  <Button asChild variant="default" className="flex items-center gap-2">
+                    <a href={project.liveDemo} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  </Button>
+                </div>
               </motion.div>
             ))}
           </div>

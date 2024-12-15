@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { aboutData } from '@/app/data/aboutData'
-import { Phone, Mail, Linkedin, Github } from 'lucide-react'
+import { Phone, Mail, Linkedin, Github,ChevronsLeftRightEllipsis } from 'lucide-react'
 
 export default function AboutPage() {
   return (
@@ -64,6 +64,10 @@ export default function AboutPage() {
                   <li className="flex items-center">
                     <span className="mr-2">📍</span>
                     {aboutData.contact.location}
+                  </li>
+                  <li className="flex items-center">
+                    <ChevronsLeftRightEllipsis className="mr-2" />
+                    <a href={aboutData.contact.profile} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{aboutData.contact.profile}</a>
                   </li>
                 </ul>
               </div>

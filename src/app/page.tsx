@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
-import { Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown, ExternalLink } from 'lucide-react'
+import { Mail, Github, Linkedin, Menu, User, Briefcase, Phone, ChevronRight, X, ChevronDown, ExternalLink, ChevronsLeftRightEllipsis } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Link from 'next/link'
@@ -382,9 +382,10 @@ export default function Home() {
                 <div className="flex flex-col items-center">
                 <div className="flex space-x-4 mb-6">
                     {[
-                      { Icon: Mail, link: "mailto:amarathuridhaa@gmail.com" }, // Tautan email
-                      { Icon: Github, link: "https://github.com/athuridha" }, // Tautan GitHub
-                      { Icon: Linkedin, link: "https://www.linkedin.com/in/amara-thuridha-3baa3122b" } // Tautan LinkedIn
+                      { Icon: Mail, link: "mailto:amarathuridhaa@gmail.com" },
+                      { Icon: Github, link: "https://github.com/athuridha" },
+                      { Icon: Linkedin, link: "https://www.linkedin.com/in/amara-thuridha-3baa3122b" },
+                      { Icon: ChevronsLeftRightEllipsis, link: "https://athuridha.my.id/" }
                     ].map(({ Icon, link }, index) => (
                       <motion.div
                         key={index}

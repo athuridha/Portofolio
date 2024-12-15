@@ -12,7 +12,8 @@ export const aboutData = {
     email: "amarathuridhaa@gmail.com",
     linkedin: "www.linkedin.com/in/amara-thuridha-3baa3122b",
     github: "https://github.com/athuridha",
-    location: "Karawang, Jawa Barat, Indonesia"
+    location: "Karawang, Jawa Barat, Indonesia",
+    profile: "https://www.athuridha.my.id/"
   },
   education: [
     {
@@ -30,7 +31,7 @@ export const aboutData = {
   ],
   workExperience: [
     {
-      position: "Anggota Visual Design Creative",
+      position: "Member of Visual Design Creative",
       company: "Tarumanagara Fair 2023",
       location: "West Jakarta",
       period: "Mar 2024 - Jun 2024",
@@ -41,7 +42,7 @@ export const aboutData = {
       ]
     },
     {
-      position: "Wakil Koordinator Publikasi dan Dokumentasi",
+      position: "Deputy Coordinator of Publication and Documentation",
       company: "UKM OH 2023",
       location: "West Jakarta",
       period: "Sep 2023",
@@ -64,7 +65,7 @@ export const aboutData = {
     { name: 'Adobe Photoshop', level: 90, icon: PenTool },
     { name: 'Adobe After Effects', level: 85, icon: Film },
     { name: 'Adobe Premiere Pro', level: 80, icon: Camera },
-    { name: 'Python', level: 75, icon: Terminal },
-    { name: 'Front-End Development', level: 85, icon: Code },
+    { name: 'Python Programming', level: 75, icon: Terminal },
+    { name: 'Web Developments', level: 85, icon: Code },
   ]
 }
